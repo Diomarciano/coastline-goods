@@ -1,0 +1,119 @@
+<div class="container">
+
+<% if @shopping_cart.cart_items.present? %>
+  <table class = "table">
+    <thead>
+      <tr>
+        <th style="text-align: center;"> Name Product</th>
+        <th style="text-align: center;"> Kuantitas</th>
+        <th style="text-align: center;"> Harga Satuan</th>
+        <th style="text-align: center;"> Total Harga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= @shopping_cart.cart_items.each do |item| %>
+        <tr style="border-bottom:1px solid #ccc">
+          <td style="text-align: center;">
+            <%=  item.product.name %> </td>
+          <td style="text-align: center;">
+            <%= item.quantity %>
+          </td>
+          <td style="text-align: center;">
+            <%= data_currency(item.product.price) %>
+          </td style="text-align: center;">
+          <td style="text-align: center;">
+            <div> 
+              <div id=("item_#{item.id}")>
+                <%= data_currency(item.subtotal) %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+<% else %>
+ <div class="center">
+ <p>
+    You don't have any items in your cart.</p>
+ <p>  Back to <%= link_to "Shopping", lihat_path %>.
+  </p>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  
+<% end %>
+
+<% if @shopping_cart.cart_items.present? %>
+  <div class="footer_pembayaran">
+    <h3 style="float:right;width: 176px;">
+      <div style="float:right">
+        <div class="total_items">
+          <%= data_currency(@shopping_cart.total_items) %>
+        </div>
+      </div>
+    </h3>  
+    <br clear="both">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn-info pull-right" data-toggle="modal" data-target="#myModal">Checkout</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Billing Address</h4>
+        </div>
+        <div class="modal-body">
+          <form class = "form-search" action = "/shopping/create_order" method="post" id="billing-form">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <div class="form-group">
+                <tr>
+                  <td>Name</td>
+                  <td><%= text_field_tag :receiver_name,'',size: '30', maxlength: '30', class: "form-control", required: true %></td>
+                </tr>
+                <tr>
+                  <td>Mobile Number</td>
+                  <td><%= number_field_tag :receiver_mobile_number,'',size: '30', maxlength: '30', class: "form-control", required: true %></td>
+                </tr>
+                <tr>
+                  <td>Province</td>
+                  <td><%= select_tag(:receiver_province, options_for_select([["", ""],["Aceh", "Aceh"], ["Banten", "Banten"], ["Bali", "Bali"], ["DKI Jakarta", "DKI Jakarta"], ["Jambi", "Jambi"],["Jawa Barat", "Jawa Barat"] ,["Jawa Tengah", "Jawa Tengah"] ,["Jawa Timur", "Jawa Timur"], ["Kalimantan Barat", "Kalimantan Barat"], ["Kalimantan Selatan", "Kalimantan Selatan"],["Kalimantan Timur", "Kalimantan Timur"],["Kalimantan Utara", "Kalimantan Utara"],["Riau", "Riau"],["Sulawesi Barat", "Sulawesi Barat"],["Sulawesi Selatan", "Sulawesi Selatan"],["Sulawesi Utara", "Sulawesi Utara"],["Sumatera Barat", "Sumatera Barat"],["Sumatera Selatan", "Sumatera Selatan"],["Sumatera Utara", "Sumatera Utara"],["Yogyakarta", "Yogyakarta"]]), class: "form-control", required: true) %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td><%= text_field_tag :receiver_city,'',size: '30', maxlength: '30', class: "form-control", required: true %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Address</td>
+                  <td><%= text_area_tag :receiver_address,'',size: '30', maxlength: '30', class: "form-control", required: true %></td>
+                </tr>
+                <tr>
+                  <td>Postal Code</td>
+                  <td><%= number_field_tag :receiver_postal_code,'',size: '30', maxlength: '30', class: "form-control", required: true %></td>
+                </tr>
+              </div>
+        </div>
+
+            <div class="modal-footer">
+            <button class = "btn-primary" type="submit">  Buy Now </button>
+            <button type="button" class="btn-default" data-dismiss="modal">Close</button>
+            </form>
+<% end %>
+        
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</div>
+</div>
+
+<br /><br /><br /><br /><br />

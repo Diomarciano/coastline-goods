@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="thumbnail">
+			<%= image_tag @product.image.url(:medium) %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h1><%= @product.name %></h1>
+			<p><%= @product.description %></p>
+			<h3><%= data_currency(@product.price) %></h3>
+			 <form class =" form-search" action = "/shopping/add_to_cart" method="post">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= hidden_field_tag :product, "#{@product.id}" %>
+                  <div class="input-group">
+                    <span class = "input-group-btn">
+                      <input class = "form-control" name= "quantity" value="1" type="number" style="width: 140px;">
+                      <button class = "btn btn-search" type="submit">Add to cart </button>
+                    </span>
+                  </div>
+            </form>
+            <br />
+            <%= link_to "Write a Review", new_product_review_path(@product), class: "btn btn-info" %>
+
+			
+		</div>
+	</div>
+
+	<br />
+
+	<div class="panel panel-default">
+		<div class="panel-heading"><h1>Comment and Rating</h1></div>
+		<div class="panel-body">
+		<% if @reviews.blank? %>
+			<h3>No Review just yet, would you like to add the first</h3>
+			<%= link_to "Write a Review", new_product_review_path(@product), class: "btn btn-info" %>
+		<% else %>
+			<% @reviews.each do |review| %>
+				<div class="reviews">
+					<p><%= review.user.email %></p>
+					<div class="star-rating" data-score= <%= review.rating %> ></div>
+					<p><%= review.comment %></p>
+					<hr>
+				</div>
+			<% end %>
+		<% end %>
+		</div>
+
+
+	</div>
+</div>
+
+<script>
+	$('.star-rating').raty({
+		path: '/assets',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	})
+</script>

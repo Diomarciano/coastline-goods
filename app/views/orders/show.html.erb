@@ -1,0 +1,57 @@
+<div class="container">
+
+		<div class="form-group">
+			<div class="row">
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Nomor Order : &nbsp; &nbsp; &nbsp;<%= @order.number %></h4>
+				</div>
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Province:  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @order.receiver_province %></h4>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Email :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @order.user.email %><h4>
+				</div>
+				<div class='col-sm-6 col-xs-6 '>
+					<h4>City :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @order.receiver_city %></h4>
+				</div>
+			</div>	
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Name :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= @order.receiver_name %></h4>
+				</div>
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Address :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= @order.receiver_address %></h4>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row">
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Nomor Hp :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%= @order.receiver_mobile_number %> </h4>
+				</div>
+				<div class='col-sm-6 col-xs-6'>
+				<h4>Postal Code :  &nbsp; &nbsp;<%= @order.receiver_postal_code %></h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="row">
+			<div class='col-sm-6 col-xs-6'>
+				<h4><b>Total Harga :  &nbsp; &nbsp; &nbsp;<%= data_currency @order.total_all_price %></b></h4>
+			</div>
+			</div>
+		</div>
+
+		<b><p>* Silahkan Lanjutkan Transfer Sesuai Total Harga </p>
+		<p>BCA 88578290 a/n Dionisius Marciano Hayong</p>
+		<p>Mandiri 0388138131 a/n Dionisius Marciano Hayong	</p>
+		<p>BNI 31313131151 a/n Dionisius Marciano</p></b>
+
+</div>
