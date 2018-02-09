@@ -10,6 +10,11 @@ def add_to_cart
    flash[:notice] = "#{@product.name} has been added to the Cart."
  end
 
+ def remove_to_cart
+  @shopping_cart.clear
+  redirect_to lihat_path
+ end
+
  
  def create_order
   total_price_delivery = 0
@@ -34,8 +39,18 @@ def add_to_cart
   flash[:notice] = "Your Order has been created"
  end
 
+  def destroy
+    @shopping_cart.destroy
+    respond_to do |format|
+      format.html { redirect_to lihat_path, notice: 'Cart was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end  
+
 
  def cart_items
-  render :template => 'shopping/cart_items'
+  render :template => 'shopping/shopping_cart_items'
  end
+
+
 end

@@ -21,7 +21,9 @@ gem 'paperclip', '~> 5.1'
 gem 'rails_admin', '~> 1.2'
 gem 'will_paginate-bootstrap'
 
-gem 'acts_as_shopping_cart'
+gem 'acts_as_shopping_cart', '~> 0.4.1'
+gem 'ransack'
+
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 

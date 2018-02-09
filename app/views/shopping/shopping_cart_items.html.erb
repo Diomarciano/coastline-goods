@@ -54,6 +54,9 @@
       </div>
     </h3>  
     <br clear="both">
+     <%= link_to 'Remove Cart', @shopping_cart_path ,class:"btn btn-danger btn-md", method: :delete %>
+  <%= link_to 'Back To Shopping', lihat_path ,class:"btn btn-info btn-md"%>
+    
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn-info pull-right" data-toggle="modal" data-target="#myModal">Checkout</button>
 
@@ -95,7 +98,8 @@
                 </tr>
                 <tr>
                   <td>Postal Code</td>
-                  <td><%= number_field_tag :receiver_postal_code,'',size: '30', maxlength: '30', class: "form-control", required: true %></td>
+                  <td><%= number_field_tag :receiver_postal_code,'',size: '30', maxlength: '30', class: "form-control", required: true, onkeyup: "cek()" %></td>
+                  <div id="notif"></div>
                 </tr>
               </div>
         </div>
@@ -117,3 +121,26 @@
 </div>
 
 <br /><br /><br /><br /><br />
+
+<script>
+var target=document.getElementById("postal_code");
+var batas_karakter=5;
+function cek(){
+    // jika jumlah karakter yg diketikkan lebih dari atau sama dengan 100
+    if(target.value.length == batas_karakter ){
+    //memberikan warna merah pada text pemberitahuan
+    document.getElementById("notif").style.color="red";
+    // menampilkan pemberitahuan 
+    document.getElementById("notif").innerHTML="Minimal 5 Karakter !";
+    }
+    //jika tidak 
+else{
+    //hitung jumlah karakter yg sudah diketikkan
+    var jumlah_karakter=target.value.length;
+    // untuk mengetahui jumlah karakter yg tersisa, maka batas_karakter dikurangi karakter yg telah diketikkan
+    var sisa=batas_karakter-jumlah_karakter;
+    // tampilkan pemberitahuan berapa karakter lagi yg tersisa
+    document.getElementById("notif").innerHTML=sisa+" Karakter tersisa !";
+    }
+}
+</script>

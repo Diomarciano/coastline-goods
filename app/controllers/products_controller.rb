@@ -3,12 +3,12 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index
-    if params[:search]
-    @products = Product.search(params[:search]).order("created_at DESC").page(params[:page]).per_page(8)
-    else
-    @products = Product.all.order("created_at DESC").page(params[:page]).per_page(8)
-    end
+def index
+  @search = Product.search(params[:q])
+  @products = @search.result
+  @search.build_condition if @search.conditions.empty?
+  @search.build_sort if @search.sorts.empty?
+
 end
 
 def lihat

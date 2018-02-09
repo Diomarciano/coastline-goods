@@ -10,13 +10,4 @@ class Product < ActiveRecord::Base
   	validates_attachment_presence :image
 
 
-
-
-def self.search(search)
-    #tire.search(load.true)  do
-    # query{string params[:query],default_operator:"AND"} if params[:query].present?
-    # filter :range,published_at:{lte: Time.zone.now}
-    where("lower(name) LIKE? ", "%#{search}%")
-  end
-  
 end

@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125094523) do
+ActiveRecord::Schema.define(version: 20180209055725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 100
+    t.datetime "created_at",             precision: 6, null: false
+    t.datetime "updated_at",             precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -40,16 +40,16 @@ ActiveRecord::Schema.define(version: 20180125094523) do
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",               limit: 100
     t.decimal  "price"
     t.text     "description"
     t.integer  "category_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
+    t.datetime "created_at",                     precision: 6, null: false
+    t.datetime "updated_at",                     precision: 6, null: false
+    t.string   "image_file_name",    limit: 100
+    t.string   "image_content_type", limit: 100
     t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "image_updated_at",               precision: 6
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -65,42 +65,42 @@ ActiveRecord::Schema.define(version: 20180125094523) do
 
   create_table "shopping_cart_items", force: :cascade do |t|
     t.integer  "owner_id"
-    t.string   "owner_type"
+    t.string   "owner_type",     limit: 30
     t.integer  "quantity"
     t.integer  "item_id"
-    t.string   "item_type"
-    t.string   "price_currency"
+    t.string   "item_type",      limit: 100
+    t.string   "price_currency", limit: 20
     t.decimal  "price_cents"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "shopping_carts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "order_id"
-    t.string   "delivery_method"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "delivery_method", limit: 100
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "shopping_carts", ["order_id"], name: "index_shopping_carts_on_order_id", using: :btree
   add_index "shopping_carts", ["user_id"], name: "index_shopping_carts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.string   "email",                  limit: 100,               default: "", null: false
+    t.string   "encrypted_password",     limit: 100,               default: "", null: false
+    t.string   "reset_password_token",   limit: 100
+    t.datetime "reset_password_sent_at",             precision: 6
+    t.datetime "remember_created_at",                precision: 6
+    t.integer  "sign_in_count",                                    default: 0,  null: false
+    t.datetime "current_sign_in_at",                 precision: 6
+    t.datetime "last_sign_in_at",                    precision: 6
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                         precision: 6,              null: false
+    t.datetime "updated_at",                         precision: 6,              null: false
     t.boolean  "admin"
-    t.string   "name"
+    t.string   "name",                   limit: 150
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
