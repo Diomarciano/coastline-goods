@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209055725) do
+ActiveRecord::Schema.define(version: 20180221063411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,21 +22,29 @@ ActiveRecord::Schema.define(version: 20180209055725) do
     t.datetime "updated_at",             precision: 6, null: false
   end
 
+  create_table "order_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.string   "number"
+    t.string   "number",                 limit: 100
     t.integer  "user_id"
     t.decimal  "total_price_items"
     t.decimal  "total_all_price"
-    t.string   "receiver_name"
-    t.string   "receiver_mobile_number"
-    t.string   "receiver_province"
-    t.string   "receiver_city"
+    t.string   "receiver_name",          limit: 150
+    t.string   "receiver_mobile_number", limit: 13
+    t.string   "receiver_province",      limit: 100
+    t.string   "receiver_city",          limit: 100
     t.text     "receiver_address"
-    t.string   "receiver_postal_code"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "receiver_postal_code",   limit: 10
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "order_status_id"
   end
 
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
@@ -106,6 +114,7 @@ ActiveRecord::Schema.define(version: 20180209055725) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "shopping_carts", "orders"

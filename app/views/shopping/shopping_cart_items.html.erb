@@ -38,7 +38,7 @@
  <div class="center">
  <p>
     You don't have any items in your cart.</p>
- <p>  Back to <%= link_to "Shopping", lihat_path %>.
+ <p>  Back to <%= link_to "Shopping", products_path %>.
   </p>
 </div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  
@@ -55,7 +55,7 @@
     </h3>  
     <br clear="both">
      <%= link_to 'Remove Cart', @shopping_cart_path ,class:"btn btn-danger btn-md", method: :delete %>
-  <%= link_to 'Back To Shopping', lihat_path ,class:"btn btn-info btn-md"%>
+  <%= link_to 'Back To Shopping', products_path ,class:"btn btn-info btn-md"%>
     
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn-info pull-right" data-toggle="modal" data-target="#myModal">Checkout</button>

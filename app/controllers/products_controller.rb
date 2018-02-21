@@ -1,13 +1,21 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_filter :set_search
+
+
 
   # GET /products
   # GET /products.json
 def index
-  @search = Product.search(params[:q])
-  @products = @search.result
-  @search.build_condition if @search.conditions.empty?
+  category_id = params[:category]
+  unless category_id.present?
+  @products = @search.result.page(params[:page]).per_page(1)
   @search.build_sort if @search.sorts.empty?
+
+  else
+    @products = Product.where(:category_id => category_id)
+  end
+
 
 end
 
@@ -77,6 +85,10 @@ end
   end
 
   private
+
+    def set_search
+        @search = Product.search(params[:q])      
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])

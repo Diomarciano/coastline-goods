@@ -1,22 +1,43 @@
 <div class="center"> <h1>Product For Sale</h1>  </div> 
   <hr>
 <div class="container">
-
-  <%= search_form_for @search, url: search_products_path, method: :post do |f| %> 
-        <%= f.condition_fields do |c| %>
-         <%= render "condition_fields", f: c %>
-        <% end %>
-        <p><%= link_to_add_fields "Add Conditions Search", f, :condition %></p>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 center">
+      <%= search_form_for @search, url: search_products_path, method: :post do |f| %> 
+        <div class="form-group">
+          <%= f.text_field :name_cont, class: "form-control center", placeholder: "Search Products by Name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price_gteq, "Price Between" %>
+          <%= f.text_field :price_gteq, class:"form-control center", placeholder: "ex: 100000", type: "number" %>
+          <%= f.label :price_lteq, "To" %>
+          <%= f.text_field :price_lteq, class:"form-control center", placeholder: "ex: 200000", type: "number" %>
+        </div>
         <div class="field">
           Sort:
           <%= f.sort_fields do |s| %>
             <%= s.sort_select %>
           <% end %>
         </div>
-        <div class="actions"><%= f.submit "Search" %></div>
-      <% end %>
+          <br />
+          <button class = "btn btn-primary" type="submit">Search </button>
 
-  <div class="row">
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <div class="row"> 
+      <div class="col-lg-3">
+        <div class="well sidebar-nav">
+        <h3>Categories</h3>
+          <ul class="nav nav-list">
+            <li><%= link_to "All", '/products' %></li>
+            <% Category.all.each do |category| %>
+            <li><%= link_to category.name, "/products?category=#{category.id}" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <div class="col-lg-9">
         <div class="row">
         <% @products.each do |product| %>
@@ -43,5 +64,6 @@
         <% end %>
       </div> 
       </div>
+      <div class="center"><%= will_paginate @collection, renderer: BootstrapPagination::Rails %></div>
   </div>
 </div>

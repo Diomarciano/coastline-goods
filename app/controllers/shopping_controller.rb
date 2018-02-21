@@ -12,7 +12,7 @@ def add_to_cart
 
  def remove_to_cart
   @shopping_cart.clear
-  redirect_to lihat_path
+  redirect_to products_path
  end
 
  
