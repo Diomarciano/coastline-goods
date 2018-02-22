@@ -34,7 +34,6 @@ def add_to_cart
   @order.receiver_postal_code = params[:receiver_postal_code]
   @order.receiver_province = params[:receiver_province]
   @order.save
-  UserMailer.order(@order, @user).deliver_now
   @shopping_cart.update(:order_id => @order.id)
   redirect_to @order
   flash[:notice] = "Your Order has been created"
