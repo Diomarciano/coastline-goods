@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 def index
   category_id = params[:category]
   unless category_id.present?
-  @products = @search.result.page(params[:page]).per_page(1)
+  @products = @search.result.page(params[:page]).per_page(15)
   @search.build_sort if @search.sorts.empty?
 
   else
