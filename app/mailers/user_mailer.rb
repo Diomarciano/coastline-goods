@@ -1,11 +1,11 @@
 class UserMailer < ApplicationMailer
 
-	default from: "admin@coastline-goods.com"
+	 default from: "info@handbo.id"
 
-	def order(order,user)
-	  @order = order
-	  @user = user
-	  mail(to: "admin@coastline-goods.com", subject: 'Bukti Pemesanan')
-	end
+  def order_mail(order, user)
+    @user = user
+    @order = order
+  	mail(to: @order.user.email, subject: 'Bukti Pembelian')
+  end
 
 end
