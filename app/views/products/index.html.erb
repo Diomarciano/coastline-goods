@@ -64,6 +64,14 @@
         <% end %>
       </div> 
       </div>
-      <div class="center"><%= will_paginate @collection, renderer: BootstrapPagination::Rails %></div>
+        <div class="col-md-12 text-center">
+      <div class="pagination">
+      <% unless @products.empty? %>
+  <%= will_paginate @products %>
+<% end %>
+      
+    </div>   
+    
+  </div> 
   </div>
 </div>
