@@ -1,3 +1,5 @@
+<% provide(:title, 'Product For Sale | Coastline - Goods') %>
+
 <div class="center"> <h1>Product For Sale</h1>  </div> 
   <hr>
 <div class="container">
@@ -40,38 +42,35 @@
       </div>
       <div class="col-lg-9">
         <div class="row">
-        <% @products.each do |product| %>
-          <div class="col-md-4">
-            <div class="thumbnail">
-              <%= link_to (image_tag product.image.url(:medium)),product_path(product) %>
-              <div class="caption center">
-                <h3><%= product.name %></h3>
-                <h3><%= data_currency(product.price) %></h3>
-                <form class =" form-search" action = "/shopping/add_to_cart" method="post">
-                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                    <%= hidden_field_tag :product, "#{product.id}" %>
-                  <div class="input-group">
-                    <span class = "input-group-btn">
-                      <input class = "form-control" name= "quantity" value="1" type="number" style="width: 140px;">
-                      <button class = "btn btn-search" type="submit">Add to cart </button>
-                    </span>
-
-                  </div>
-                </form>
+          <% @products.each do |product| %>
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <%= link_to (image_tag product.image.url(:medium)),product_path(product) %>
+                <div class="caption center">
+                  <h3><%= product.name %></h3>
+                  <h3><%= data_currency(product.price) %></h3>
+                  <form class =" form-search" action = "/shopping/add_to_cart" method="post">
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                      <%= hidden_field_tag :product, "#{product.id}" %>
+                    <div class="input-group">
+                      <span class = "input-group-btn">
+                        <input class = "form-control" name= "quantity" value="1" type="number" style="width: 140px;">
+                        <button class = "btn btn-search" type="submit">Add to cart </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div> 
+          <% end %>
+        </div> 
       </div>
-        <div class="col-md-12 text-center">
+
+    <div class="col-md-12 text-center">
       <div class="pagination">
-      <% unless @products.empty? %>
-  <%= will_paginate @products %>
-<% end %>
-      
-    </div>   
-    
-  </div> 
-  </div>
+        <% unless @products.empty? %>
+          <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+        <% end %>
+        </div>   
+    </div> 
 </div>

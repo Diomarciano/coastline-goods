@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :orders
 
   get 'shopping/index'
-  get 'shopping/cart_items' => 'shopping#shopping_cart_items'
+  get 'shopping/cart_items'
   post 'shopping/create_order'
   post 'shopping/add_to_cart'
   delete 'shopping/cart_items' => 'shopping#destroy'
