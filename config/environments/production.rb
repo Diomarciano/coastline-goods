@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.default_url_options = { host: 'https://coastline-goods2.herokuapp.com/' }
 
-# config/environments/production.rb
+#Sets for Amazon S3
 config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
