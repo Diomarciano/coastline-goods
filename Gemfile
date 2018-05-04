@@ -28,6 +28,8 @@ gem 'will_paginate-bootstrap'
 
 gem 'acts_as_shopping_cart', '~> 0.4.0'
 gem 'ransack'
+gem 'sendgrid-ruby'
+
 
 
 gem 'sdoc', '~> 0.4.0', group: :doc
