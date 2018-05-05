@@ -214,7 +214,7 @@
                                     <p style="margin: 0;">Address :  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<%= @order.receiver_address %></p>
                                     <p style="margin: 0;">Nomor Hp :  &nbsp; &nbsp; &nbsp;<%= @order.receiver_mobile_number %> </p>
                                     <p style="margin: 0;">Postal Code :  &nbsp;&nbsp;<%= @order.receiver_postal_code %></p>
-                                    <b><p style="margin: 0;">Total Harga : &nbsp;&nbsp;<%= data_currency (@order.total_all_price, unit: 'Rp. ', :precision => 0) %></p></b>
+                                    <b><p style="margin: 0;">Total Harga : &nbsp;&nbsp;<%= data_currency(@order.total_all_price, unit: "Rp. ", :precision => 0) %></p></b>
                                     <br />
                                     <b><p>* Silahkan Lanjutkan Transfer Sesuai Total Harga </p>
                                     <p>BCA 88578290 a/n Dionisius Marciano Hayong</p>
