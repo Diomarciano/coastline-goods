@@ -79,19 +79,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'https://coastline-goods94.herokuapp.com' }
 
- # Setup the mailer config
-  config.action_mailer.delivery_method = :smtp
-
-  config.action_mailer.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'heroku.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
-  }
-
 #Sets for Amazon S3
 config.paperclip_defaults = {
   storage: :s3,
