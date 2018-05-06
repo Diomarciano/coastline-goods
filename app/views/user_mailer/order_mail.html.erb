@@ -40,7 +40,7 @@ pemberitahuan Order !
 
 <p>
   <strong>Total Harga : </strong>
-  <%= data_currency @order.total_all_price %>
+  <%= number_to_currency(@order.total_all_price,unit: 'Rp. ', :precision => 0) %>
 </p>
 
 <b><p>* Silahkan Lanjutkan Transfer Sesuai Total Harga </p>
