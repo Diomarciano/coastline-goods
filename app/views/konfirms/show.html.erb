@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>No order:</strong>
+  <%= @konfirm.no_order %>
+</p>
+
+<p>
+  <strong>No rek:</strong>
+  <%= @konfirm.no_rek %>
+</p>
+
+<p>
+  <strong>Atas nama:</strong>
+  <%= @konfirm.atas_nama %>
+</p>
+
+<p>
+  <strong>Jumlah:</strong>
+  <%= @konfirm.jumlah %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @konfirm.user %>
+</p>
+
+<%= link_to 'Edit', edit_konfirm_path(@konfirm) %> |
+<%= link_to 'Back', konfirms_path %>

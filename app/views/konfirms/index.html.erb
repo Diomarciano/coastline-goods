@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Konfirms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>No order</th>
+      <th>No rek</th>
+      <th>Atas nama</th>
+      <th>Jumlah</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @konfirms.each do |konfirm| %>
+      <tr>
+        <td><%= konfirm.no_order %></td>
+        <td><%= konfirm.no_rek %></td>
+        <td><%= konfirm.atas_nama %></td>
+        <td><%= konfirm.jumlah %></td>
+        <td><%= konfirm.user %></td>
+        <td><%= link_to 'Show', konfirm %></td>
+        <td><%= link_to 'Edit', edit_konfirm_path(konfirm) %></td>
+        <td><%= link_to 'Destroy', konfirm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Konfirm', new_konfirm_path %>

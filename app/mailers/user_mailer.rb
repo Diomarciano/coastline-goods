@@ -8,4 +8,10 @@ class UserMailer < ApplicationMailer
   	mail(to: @order.user.email, subject: 'Bukti Pembelian')
   end
 
+  def konfirm_mail(konfirm, user)
+    @user = user
+    @konfirm = konfirm
+  	mail(to: @konfirm.user.email, subject: 'Konfirmasi Pembayaran')
+  end
+
 end

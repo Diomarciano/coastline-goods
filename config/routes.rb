@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :konfirms
   resources :searches
   resources :orders
 
@@ -26,5 +27,6 @@ Rails.application.routes.draw do
 
   get 'lihat' => 'products#lihat'
   post 'lihat' => 'products#lihat'
+
 
 end

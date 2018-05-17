@@ -1,0 +1,47 @@
+<%= form_for(@konfirm) do |f| %>
+  <% if @konfirm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@konfirm.errors.count, "error") %> prohibited this konfirm from being saved:</h2>
+
+      <ul>
+      <% @konfirm.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container">
+  <div class="center">
+    <div class="col-md-6 col-md-offset-3">
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Konfirmasi Pembayaran</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <%= f.label :no_order, "Nomor Order" %><br>
+            <%= f.text_field :no_order, class: "form-control", placeholder: "1-1526007608" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :no_rek, "Nomor Rekening" %><br>
+            <%= f.text_field :no_rek, class: "form-control", type: 'number', placeholder: "1526007608" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :atas_nama, "Atas Nama" %><br>
+            <%= f.text_field :atas_nama, class: "form-control", placeholder: "Admin Coastline Goods" %>
+          </div>
+            <div class="form-group">
+              <%= f.label :jumlah, "Jumlah Transfer" %><br>
+              <%= f.text_field :jumlah, class: "form-control", placeholder: "999999" %>
+              <p>*tanpa menggunakan tandan titik (*)</p>
+            </div>
+              <div class="actions">
+                <%= f.submit "Konfirmasi Pembayaran", class:"btn btn-info" %>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
