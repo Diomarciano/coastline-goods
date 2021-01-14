@@ -23,7 +23,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
-gem 'rails_admin', '~> 1.2'
+gem 'rails_admin', '~> 1.4'
 gem 'will_paginate-bootstrap'
 
 gem 'acts_as_shopping_cart', '~> 0.4.0'
